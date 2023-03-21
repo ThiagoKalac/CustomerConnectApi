@@ -1,10 +1,11 @@
 import { response, Router } from "express";
+import { createdClientController, updateClientController, deleteClientController,retriveClientController  } from "../controllers/client.controller";
 
 const clientRouters = Router();
 
-clientRouters.get("", (req, res) => res.json("get funcionando"));
-clientRouters.post("", (req, res) => res.json("post funcionando"));
-clientRouters.patch("/:id", (req, res) => res.json("patch funcionando"));
-clientRouters.delete("/:id", (req, res) => res.json("delete funcionando"));
+clientRouters.get("", retriveClientController);
+clientRouters.post("", createdClientController);
+clientRouters.patch("",updateClientController);
+clientRouters.delete("", deleteClientController);
 
 export {clientRouters}
