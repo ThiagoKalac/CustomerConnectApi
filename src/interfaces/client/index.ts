@@ -1,11 +1,12 @@
 export interface IClient {
+     id: string
      nickname: string;
      fullName: string;
      telephone: string;
      telephonesExtra: string[],
      email: string;
      emailsExtra: string[];
-     password: string;
+     createdAt: Date;
 }
 
 export interface IClientRequest {
