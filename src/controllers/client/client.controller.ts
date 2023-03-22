@@ -13,8 +13,9 @@ const deleteClientController = (res: Request, resp: Response) => {
      return resp.status(201).json("chegou no controler")
 }
 
-const retriveClientController = (res: Request, resp: Response) => { 
-     return resp.status(201).json("chegou no controler")
+const retriveClientController = (res: Request, resp: Response) => {
+     const client = res.user.client
+     return resp.status(200).json(client)
 }
 
 export {createdClientController, updateClientController, deleteClientController,retriveClientController }

@@ -1,12 +1,14 @@
 import { Router } from "express";
 import {createdClientController,updateClientController,deleteClientController,retriveClientController} from "../../controllers/client/client.controller";
+import { authTokenMiddleware } from "../../middlewares/authToken.middleware";
 import { availabilityCheckerMiddleware } from "../../middlewares/availabilityChecker.middleware";
 import { dataValidationMiddleware } from "../../middlewares/dataValidation.middleware";
+import { getOwnerOfTokenMiddleware } from "../../middlewares/getOwnerOfToken.middleware";
 import {createdClientSchema,updateClientSchema} from "../../schema/client/client.schema";
 
 const clientRouters = Router();
 
-clientRouters.get("", retriveClientController);
+clientRouters.get("", authTokenMiddleware,getOwnerOfTokenMiddleware,retriveClientController);
 
 clientRouters.post("",
   dataValidationMiddleware(createdClientSchema),
@@ -15,10 +17,12 @@ clientRouters.post("",
 );
 
 clientRouters.patch("",
+  authTokenMiddleware,
   dataValidationMiddleware(updateClientSchema),
+  getOwnerOfTokenMiddleware,
   updateClientController
 );
 
-clientRouters.delete("", deleteClientController);
+clientRouters.delete("", authTokenMiddleware,deleteClientController);
 
 export { clientRouters };
