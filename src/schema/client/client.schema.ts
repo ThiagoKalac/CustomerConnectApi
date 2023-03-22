@@ -26,11 +26,11 @@ const updateClientSchema: yup.SchemaOf<IClientUpdate> = yup.object().shape({
      fullName: yup.string().notRequired(),
      telephone: yup
           .string()
-          .matches(/^\(?[0-9]{2}\)?[\s-]?9?[\s-]?[0-9]{4}[\s-]?[0-9]{4}$/, "Telefone inválido")
+          .matches(/^\(?[0-9]{2}\)?[\s-]?9?[\s-]?[0-9]{4}[\s-]?[0-9]{4}$/, "Invalid phone number")
           .notRequired(),
      telephonesExtra: yup
           .array()
-          .of(yup.string().matches(/^\(?[0-9]{2}\)?[\s-]?9?[\s-]?[0-9]{4}[\s-]?[0-9]{4}$/, "Telefone extra inválido"))
+          .of(yup.string().matches(/^\(?[0-9]{2}\)?[\s-]?9?[\s-]?[0-9]{4}[\s-]?[0-9]{4}$/, "Extra invalid phone number"))
           .notRequired(),
      email: yup.string().email().notRequired(),
      emailsExtra: yup.array().of(yup.string().email()).notRequired(),
