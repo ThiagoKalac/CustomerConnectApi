@@ -29,8 +29,4 @@ export interface IClientUpdate {
      password?: string;
 }
  
-export interface IClientLogin {
-     email: string
-     password: string
-}
- 
+

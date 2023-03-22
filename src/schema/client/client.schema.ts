@@ -2,7 +2,6 @@ import * as yup from "yup";
 import {
   IClient,
   IClientRequest,
-  IClientLogin,
   IClientUpdate,
 } from "../../interfaces/client/index";
 
@@ -50,10 +49,5 @@ const returnClientSchema: yup.SchemaOf<IClient> = yup.object().shape({
      createdAt: yup.date().notRequired()
 });
 
-const loginClientSchema: yup.SchemaOf<IClientLogin> = yup.object().shape({
-     email: yup.string().email().required(),
-     password: yup.string().required(),
-});
 
-
-export { createdClientSchema, updateClientSchema, returnClientSchema, loginClientSchema};
+export { createdClientSchema, updateClientSchema, returnClientSchema};
