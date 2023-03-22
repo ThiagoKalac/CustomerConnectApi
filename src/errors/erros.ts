@@ -23,6 +23,8 @@ const errorHandle = (error:Error , request:Request, response:Response, next:Next
           return response.status(404).json({ message: "Syntax invalid of id" })
      }
 
+     console.log(error)
+
      return response.status(500).json({message: 'Internal serve error'})
 }
 
