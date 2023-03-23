@@ -18,5 +18,18 @@ const createdContactSchema: yup.SchemaOf<IContactRequest> = yup.object().shape({
      emailsExtra: yup.array().of(yup.string().email()).nullable().notRequired(),
 })
 
+const returnContactSchema: yup.SchemaOf<IContact[]> = yup.array().of(
+     yup.object().shape({
+       client: yup.string().notRequired(),
+       telephonesExtra: yup.array().nullable().notRequired(),
+       emailsExtra: yup.array().nullable().notRequired(),
+       createdAt: yup.date().notRequired(),
+       telephone: yup.string().notRequired(),
+       email: yup.string().notRequired(),
+       fullName: yup.string().notRequired(),
+       nickname: yup.string().notRequired(),
+       id: yup.string().notRequired(),
+     })
+   )
 
-export {createdContactSchema}
+export {createdContactSchema, returnContactSchema}

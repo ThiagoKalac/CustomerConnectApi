@@ -3,9 +3,9 @@ export interface IContact {
      nickname: string;
      fullName: string;
      telephone: string;
-     telephonesExtra: string[],
+     telephonesExtra?: string[],
      email: string;
-     emailsExtra: string[];
+     emailsExtra?: string[];
      createdAt: Date;
      client: string;
 }
