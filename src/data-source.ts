@@ -2,10 +2,8 @@ import { DataSource } from "typeorm"
 import "dotenv/config"
 import { Client } from "./entities/client.entity"
 import { Contact } from "./entities/contact.entity"
-import { createTable1679426457424 as CreateTable } from "./migrations/1679426457424-createTable"
-import {
-    alterColumnTellPhoneAndEmailsExtra1679445520370 as alterColumnTellPhoneAndEmailsExtra
-} from "./migrations/1679445520370-alterColumnTellPhoneAndEmailsExtra"
+import { createTable1679593628393 as CreateTable } from "./migrations/1679593628393-createTable"
+
 
 const AppDataSource = new DataSource(
     process.env.NODE_ENV === "test" ?
@@ -25,7 +23,7 @@ const AppDataSource = new DataSource(
         logging: true,
         synchronize: false,
         entities: [Client,Contact],
-        migrations: [CreateTable, alterColumnTellPhoneAndEmailsExtra]
+        migrations: [CreateTable]
     }
 )
 

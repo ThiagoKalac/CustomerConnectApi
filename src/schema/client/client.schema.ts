@@ -11,10 +11,10 @@ const createdClientSchema: yup.SchemaOf<IClientRequest> = yup.object().shape({
   telephone: yup
     .string()
     .required()
-    .matches(/^\(?[0-9]{2}\)?[\s-]?9?[\s-]?[0-9]{4}[\s-]?[0-9]{4}$/,"Telefone inválido"),
+    .matches(/^\(?[0-9]{2}\)?[\s-]?9?[\s-]?[0-9]{4}[\s-]?[0-9]{4}$/,"Invalid phone number"),
     telephonesExtra: yup
     .array()
-    .of(yup.string().matches(/^\(?[0-9]{2}\)?[\s-]?9?[\s-]?[0-9]{4}[\s-]?[0-9]{4}$/, "Telefone extra inválido"))
+    .of(yup.string().matches(/^\(?[0-9]{2}\)?[\s-]?9?[\s-]?[0-9]{4}[\s-]?[0-9]{4}$/, "Extra invalid phone number"))
      .nullable()
      .notRequired(),
   email: yup.string().email().required(),
@@ -39,14 +39,15 @@ const updateClientSchema: yup.SchemaOf<IClientUpdate> = yup.object().shape({
 });
 
 const returnClientSchema: yup.SchemaOf<IClient> = yup.object().shape({
-     id: yup.string().notRequired(),
-     nickname: yup.string().notRequired(),
-     fullName: yup.string().notRequired(),
-     telephone: yup.string().notRequired(),
+     contact: yup.array().notRequired(),
      telephonesExtra: yup.array().nullable().notRequired(),
-     email: yup.string().notRequired(),
      emailsExtra: yup.array().nullable().notRequired(),
-     createdAt: yup.date().notRequired()
+     createdAt: yup.date().notRequired(),
+     telephone: yup.string().notRequired(),
+     email: yup.string().notRequired(),
+     fullName: yup.string().notRequired(),
+     nickname: yup.string().notRequired(),
+     id: yup.string().notRequired(),
 });
 
 

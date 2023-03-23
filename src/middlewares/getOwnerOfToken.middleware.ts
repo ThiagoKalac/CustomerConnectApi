@@ -16,7 +16,7 @@ const getOwnerOfTokenMiddleware = async (req: Request, res: Response, next: Next
      req.user = {
           client
      }
-
+     
      return next();
 }
 

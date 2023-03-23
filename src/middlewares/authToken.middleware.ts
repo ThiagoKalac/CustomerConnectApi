@@ -2,12 +2,12 @@ import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken"
 import "dotenv/config"
 
-const authTokenMiddleware = async (request: Request, response: Response, next: NextFunction)=> {
+const authTokenMiddleware = async (req: Request, resp: Response, next: NextFunction)=> {
 
-     let authToken = request.headers.authorization
+     let authToken = req.headers.authorization
 
      if (!authToken) {
-          return response.status(401).json({ message: "Missing authorization token." })
+          return resp.status(401).json({ message: "Missing authorization token." })
      }
 
      authToken = authToken.split(" ")[1]
@@ -15,10 +15,10 @@ const authTokenMiddleware = async (request: Request, response: Response, next: N
      jwt.verify(authToken, process.env.SECRET_KEY, (error, decoded:any) => {
           
           if (error) {
-               return response.status(401).json({message: error.message})
+               return resp.status(401).json({message: error.message})
           }
 
-          request.user = {
+          req.user = {
                id: decoded.sub as string,
           }
           

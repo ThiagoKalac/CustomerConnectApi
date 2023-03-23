@@ -1,4 +1,4 @@
-export interface IClient {
+export interface IContact {
      id: string
      nickname: string;
      fullName: string;
@@ -7,20 +7,19 @@ export interface IClient {
      email: string;
      emailsExtra: string[];
      createdAt: Date;
-     contact?: string[];
+     client: string;
 }
 
-export interface IClientRequest {
+export interface IContactRequest {
      nickname: string;
      fullName: string;
      telephone: string;
      telephonesExtra?: string[],
      email: string;
      emailsExtra?: string[];
-     password: string;
 }
 
-export interface IClientUpdate {
+export interface IContactUpdate {
      nickname?: string;
      fullName?: string;
      telephone?: string;

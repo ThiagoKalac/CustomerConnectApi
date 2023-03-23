@@ -12,18 +12,27 @@ const createdClientService = async (data:IClientRequest):Promise<IClient> => {
      const createdClient = clientRepository.create(data)
      await clientRepository.save(createdClient)
 
-     const newClient = returnClientSchema.validate(createdClient, {
+     const newClient = await returnClientSchema.validate(createdClient, {
           stripUnknown: true
      })
      
      return newClient
 }
 
+
+
 const deleteClientService = async (id:string):Promise<void> => {
      const clientRepository = AppDataSource.getRepository(Client)
-
+     
      clientRepository.delete(id)
+     
+}
+const retriveClientService = async (client: IClient) => {
+     const validade = await returnClientSchema.validate(client, {
+          stripUnknown: true
+     })
 
+     return validade
 }
 
-export {createdClientService, deleteClientService}
+export {createdClientService,  deleteClientService, retriveClientService}
