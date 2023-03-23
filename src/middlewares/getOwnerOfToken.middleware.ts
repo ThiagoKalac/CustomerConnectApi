@@ -9,7 +9,10 @@ const getOwnerOfTokenMiddleware = async (req: Request, res: Response, next: Next
           where: { id: id },
           relations: ['contact'] 
      }) 
-    
+     
+     if (!client) {
+          res.status(409).json({ message: "user not exist" })
+     }
      req.user = {
           client
      }

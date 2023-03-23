@@ -23,6 +23,6 @@ clientRouters.patch("",
   updateClientController
 );
 
-clientRouters.delete("", authTokenMiddleware,deleteClientController);
+clientRouters.delete("", authTokenMiddleware,getOwnerOfTokenMiddleware,deleteClientController);
 
 export { clientRouters };

@@ -19,4 +19,11 @@ const createdClientService = async (data:IClientRequest):Promise<IClient> => {
      return newClient
 }
 
-export {createdClientService}
+const deleteClientService = async (id:string):Promise<void> => {
+     const clientRepository = AppDataSource.getRepository(Client)
+
+     clientRepository.delete(id)
+
+}
+
+export {createdClientService, deleteClientService}
