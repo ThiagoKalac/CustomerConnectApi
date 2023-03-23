@@ -24,4 +24,9 @@ const listContactService = async (client: IClient) => {
   return validate
 }
 
-export {createdContactService, listContactService}
+const deleteContactService = async (idContact:string):Promise<void> => { 
+  const contactRepository = AppDataSource.getRepository(Contact)
+  await contactRepository.delete(idContact)
+}
+
+export {createdContactService, listContactService, deleteContactService}

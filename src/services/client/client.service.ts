@@ -6,8 +6,8 @@ import { returnClientSchema } from "../../schema/client/client.schema"
 const createdClientService = async (data:IClientRequest):Promise<IClient> => {
      const clientRepository = AppDataSource.getRepository(Client)
      
-     data.nickname = data.nickname.toLocaleLowerCase().split(/\s+/).join('')
-     data.email = data.email.toLocaleLowerCase().split(/\s+/).join('')
+     data.nickname = data.nickname.toLowerCase().split(/\s+/).join('')
+     data.email = data.email.toLowerCase().split(/\s+/).join('')
      
      const createdClient = clientRepository.create(data)
      await clientRepository.save(createdClient)

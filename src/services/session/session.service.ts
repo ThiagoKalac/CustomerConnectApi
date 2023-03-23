@@ -17,23 +17,23 @@ const sessionLoginService = async (dataLogin:ISessionLogin):Promise<string> => {
 
      } else if (keys.includes("email")) {
 
-          const email = dataLogin.email.toLocaleLowerCase().split(/\s+/).join('')
+          const email = dataLogin.email.toLowerCase().split(/\s+/).join('')
           client = await clientRepository.findOne({ where: { email: dataLogin.email } })
 
      } else if (keys.includes("nickname")) { 
 
-          const nickname = dataLogin.nickname.toLocaleLowerCase().split(/\s+/).join('')
+          const nickname = dataLogin.nickname.toLowerCase().split(/\s+/).join('')
           client = await clientRepository.findOne({ where: { nickname: nickname } })
      }
 
      if (!client) { 
-          throw new AppError("Wrong email/password",403)
+          throw new AppError("Wrong email or nickname/password",403)
      }
 
      const validationPassword = await compare(dataLogin.password, client.password)
      
      if (!validationPassword) {
-          throw new AppError("Wrong email/password",403)
+          throw new AppError("Wrong email or nickname/password",403)
      }
      
 
