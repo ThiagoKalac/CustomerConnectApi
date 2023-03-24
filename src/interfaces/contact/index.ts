@@ -1,9 +1,9 @@
 export interface IContact {
-     id: string
+     id: string;
      nickname: string;
      fullName: string;
      telephone: string;
-     telephonesExtra?: string[],
+     telephonesExtra?: string[];
      email: string;
      emailsExtra?: string[];
      createdAt: Date;
@@ -14,7 +14,7 @@ export interface IContactRequest {
      nickname: string;
      fullName: string;
      telephone: string;
-     telephonesExtra?: string[],
+     telephonesExtra?: string[];
      email: string;
      emailsExtra?: string[];
 }
@@ -23,10 +23,9 @@ export interface IContactUpdate {
      nickname?: string;
      fullName?: string;
      telephone?: string;
-     telephonesExtra?: string[],
+     telephonesExtra?: string[];
      email?: string;
      emailsExtra?: string[];
-     password?: string;
 }
  
 

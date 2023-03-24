@@ -16,7 +16,7 @@ const deleteClientController = async (req: Request, resp: Response) => {
 }
 
 const retriveClientController = async (req: Request, resp: Response) => {
-     const client = req.user.client
+     const client = req.user
      const clientData = await retriveClientService(client)
      return resp.status(200).json(clientData)
 }

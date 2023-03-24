@@ -1,8 +1,8 @@
-import { IContact, IContactRequest } from "../../interfaces/contact"
+import { IContact, IContactRequest, IContactUpdate } from "../../interfaces/contact"
 import AppDataSource from "../../data-source"
 import { Contact } from "../../entities/contact.entity"
 import { IClient } from "../../interfaces/client"
-import { returnContactSchema } from "../../schema/contact/contact.schema"
+import { returnContactSchema, returnUpdateContactSchema } from "../../schema/contact/contact.schema"
 
 const createdContactService = async (idClient:any, dataContact: IContactRequest): Promise<Object> => {
   
@@ -18,7 +18,7 @@ const createdContactService = async (idClient:any, dataContact: IContactRequest)
   return newContact
 }
 
-const listContactService = async (client: IClient) => {
+const listContactService = async (client: IClient):Promise<Object> => {
   const listContact = client.contact
   const validate = await returnContactSchema.validate(listContact)
   return validate
@@ -29,4 +29,20 @@ const deleteContactService = async (idContact:string):Promise<void> => {
   await contactRepository.delete(idContact)
 }
 
-export {createdContactService, listContactService, deleteContactService}
+const updateContactService = async (dataUpdate: IContactUpdate, contact: IContact):Promise<Object> => {
+  const contactRepository = AppDataSource.getRepository(Contact)
+  
+  const {client, ...currentData} = contact
+  
+  const updated = contactRepository.create({
+    ...currentData,
+    ...dataUpdate
+  })
+  
+  const updateContact = await contactRepository.save(updated)
+  
+  const validate = await returnUpdateContactSchema.validate(updateContact)
+  return validate
+}
+
+export {createdContactService, listContactService, deleteContactService,updateContactService}
