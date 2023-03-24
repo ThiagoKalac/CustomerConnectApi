@@ -15,7 +15,7 @@ class Client extends People{
      }
 
      @OneToMany(() => Contact, (contact) => contact.client)
-     contact: Contact;
+     contact: Contact[];
 }
 
 export {Client}

@@ -2,7 +2,8 @@ import { DataSource } from "typeorm"
 import "dotenv/config"
 import { Client } from "./entities/client.entity"
 import { Contact } from "./entities/contact.entity"
-import {createTable1679426457424 as CreateTable} from "./migrations/1679426457424-createTable"
+import { createTable1679593628393 as CreateTable } from "./migrations/1679593628393-createTable"
+
 
 const AppDataSource = new DataSource(
     process.env.NODE_ENV === "test" ?

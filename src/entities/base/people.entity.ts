@@ -15,13 +15,13 @@ class People{
      @Column({length: 11})
      telephone: string;
 
-     @Column("simple-array")
+     @Column("simple-array",{nullable:true})
      telephonesExtra: string[];
 
      @Column({length: 100 , unique: true})
      email: string;
 
-     @Column("simple-array")
+     @Column("simple-array",{nullable:true})
      emailsExtra: string[];
 
      @CreateDateColumn()
