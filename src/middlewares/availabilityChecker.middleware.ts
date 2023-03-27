@@ -5,8 +5,8 @@ import { Client } from "../entities/client.entity";
 
 const availabilityCheckerMiddleware = async (req: Request, resp: Response, next: NextFunction) => {
      const clientRepository = AppDataSource.getRepository(Client)
-     const email = req.body.email.toLowerCase().split(/\s+/).join('');
-     const nickname = req.body.nickname.toLowerCase().split(/\s+/).join('');
+     const email = req.body.email?.toLowerCase().split(/\s+/).join('');
+     const nickname = req.body.nickname?.toLowerCase().split(/\s+/).join('');
 
      
      if (nickname && email) {
