@@ -4,8 +4,6 @@ import { dataValidationMiddleware } from "../../middlewares/dataValidation.middl
 import { loginSessionSchema } from "../../schema/session/session.schema";
 
 
-
-
 const sessionRouter = Router()
 
 sessionRouter.post("", dataValidationMiddleware(loginSessionSchema),sessionLoginController)

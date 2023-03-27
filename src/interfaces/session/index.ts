@@ -1,6 +1,5 @@
 export interface ISessionLogin {
-     email: string
+     emailOrNickname: string
      password: string
-     nickname?: string
 }
  
