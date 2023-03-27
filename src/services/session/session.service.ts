@@ -6,28 +6,24 @@ import { compare } from "bcryptjs"
 import jwt from "jsonwebtoken"
 import "dotenv/config"
 
-const sessionLoginService = async (dataLogin:ISessionLogin):Promise<string> => {
+const sessionLoginService = async (dataLogin):Promise<string> => {
      const clientRepository = AppDataSource.getRepository(Client)
      const keys = Object.keys(dataLogin)
      let client: Client
+     
+     console.log(dataLogin)
+     const customerSessionByEmail = await clientRepository.findOne({ where: { email: dataLogin.emailOrNickname } })
 
-     if (!keys.includes("nickname") && !keys.includes("email")) {
+     if (!customerSessionByEmail) {
+          const customerSessionByNickname = await clientRepository.findOne({ where: { nickname: dataLogin.emailOrNickname } })
 
-          throw new AppError("Email or Nickname is obrigatory for login", 400);
-
-     } else if (keys.includes("email")) {
-
-          const email = dataLogin.email.toLowerCase().split(/\s+/).join('')
-          client = await clientRepository.findOne({ where: { email: dataLogin.email } })
-
-     } else if (keys.includes("nickname")) { 
-
-          const nickname = dataLogin.nickname.toLowerCase().split(/\s+/).join('')
-          client = await clientRepository.findOne({ where: { nickname: nickname } })
-     }
-
-     if (!client) { 
-          throw new AppError("Wrong email or nickname/password",403)
+          if (!customerSessionByNickname) {
+               throw new AppError("Wrong email or nickname/password",403)
+          } else {
+               client = customerSessionByNickname
+          }
+     } else {
+          client = customerSessionByEmail
      }
 
      const validationPassword = await compare(dataLogin.password, client.password)

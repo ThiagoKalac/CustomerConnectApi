@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source"
 import { Client } from "../../entities/client.entity"
-import { IClient, IClientRequest } from "../../interfaces/client"
+import { IClient, IClientRequest, IClientUpdate } from "../../interfaces/client"
 import { returnClientSchema } from "../../schema/client/client.schema"
 
 const createdClientService = async (data:IClientRequest):Promise<IClient> => {
@@ -27,7 +27,7 @@ const deleteClientService = async (id:string):Promise<void> => {
      clientRepository.delete(id)
      
 }
-const retriveClientService = async (client: IClient) => {
+const retriveClientService = async (client: IClient):Promise<IClient> => {
      const validade = await returnClientSchema.validate(client, {
           stripUnknown: true
      })
@@ -35,4 +35,22 @@ const retriveClientService = async (client: IClient) => {
      return validade
 }
 
-export {createdClientService,  deleteClientService, retriveClientService}
+const updateClientService = async (client: IClient, dataUpdate:IClientUpdate):Promise<IClient>=> { 
+     const clientRepository = AppDataSource.getRepository(Client)
+     const { contact, ...currentData } = client
+     
+     const update = clientRepository.create({
+          ...currentData,
+          ...dataUpdate
+     }) 
+
+     const updateClient = await clientRepository.save(update) 
+     const validade = await returnClientSchema.validate(updateClient, {
+          stripUnknown: true
+     })
+
+     return validade
+
+}
+
+export {createdClientService,  deleteClientService, retriveClientService, updateClientService}

@@ -6,7 +6,7 @@ class People{
      @PrimaryGeneratedColumn('uuid')
      id: string;
 
-     @Column({length: 100 , unique: true})
+     @Column({length: 100})
      nickname: string;
 
      @Column({length: 200})
@@ -18,7 +18,7 @@ class People{
      @Column("simple-array",{nullable:true})
      telephonesExtra: string[];
 
-     @Column({length: 100 , unique: true})
+     @Column({length: 100})
      email: string;
 
      @Column("simple-array",{nullable:true})

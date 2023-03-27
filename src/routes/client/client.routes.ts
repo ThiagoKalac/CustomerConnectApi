@@ -18,6 +18,7 @@ clientRouters.post("",
 
 clientRouters.patch("",
   authTokenMiddleware,
+  availabilityCheckerMiddleware,
   dataValidationMiddleware(updateClientSchema),
   getOwnerOfTokenMiddleware,
   updateClientController

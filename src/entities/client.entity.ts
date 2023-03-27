@@ -5,6 +5,12 @@ import { People } from "./base/people.entity";
 
 @Entity('client')
 class Client extends People{
+     @Column({ length: 100, unique: true })
+     nickname: string;
+
+     @Column({length: 100 , unique: true})
+     email: string;
+
      @Column({ length: 120 })
      password: string;
 
