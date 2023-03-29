@@ -10,7 +10,7 @@ const updateClientController = async (req: Request, resp: Response) => {
      const client = req.user
      const dataUpdate = req.body
      const clientUpdate = await updateClientService(client, dataUpdate)
-     return resp.status(201).json(clientUpdate)
+     return resp.status(200).json(clientUpdate)
 }
 const deleteClientController = async (req: Request, resp: Response) => { 
      const id = req.user.id

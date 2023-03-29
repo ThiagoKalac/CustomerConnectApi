@@ -12,7 +12,7 @@ const validateConctactMiddleware = async (req: Request, resp: Response, next: Ne
      })
      
      if (!contactExist) {
-          return resp.status(404).json({"message":"user not found or don't exist"})
+          return resp.status(404).json({"message":"contact not found or don't exist"})
      }
 
      req.contact = contactExist
