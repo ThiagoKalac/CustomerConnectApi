@@ -4,7 +4,7 @@ import { Client } from "./client.entity";
 
 @Entity('contact')
 class Contact extends People{
-     @ManyToOne(() => Client, (client) => client.contact, {cascade:true})
+     @ManyToOne(() => Client, (client) => client.contact, { onDelete: 'CASCADE' })
      client: Client;
 }
 

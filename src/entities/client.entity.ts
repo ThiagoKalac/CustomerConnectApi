@@ -20,7 +20,7 @@ class Client extends People{
      this.password = hashSync(this.password, 10);
      }
 
-     @OneToMany(() => Contact, (contact) => contact.client)
+     @OneToMany(() => Contact, (contact) => contact.client, {cascade:true})
      contact: Contact[];
 }
 
